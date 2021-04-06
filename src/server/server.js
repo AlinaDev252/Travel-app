@@ -20,7 +20,7 @@ const cors = require("cors");
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static("client"));
+app.use(express.static("dist"));
 
 // Setup Server
 const port = 2525;

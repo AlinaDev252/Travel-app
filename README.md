@@ -1,13 +1,6 @@
-# Evaluate a News Article with Natural Language Processing
+# FEND Capstone Project: Travel App
 
-This project is a part of Udacity's **Front End Nanodegree Program** and its main goals are to help learning the following:
-
-- Setting up Webpack
-- Sass styles
-- Webpack Loaders and Plugins
-- Creating layouts and page design
-- Service workers
-- Using APIs and creating requests to external urls
+This project is a part is the final project of Udacity's **Front End Nanodegree Program** and it requires to build out a travel app that, at a minimum, obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs.
 
 ## This project requires to build a web tool that allows users to run Natural Language Processing (NLP) on articles or blogs found on other websites.
 

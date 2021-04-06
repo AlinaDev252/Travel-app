@@ -89,4 +89,4 @@ async function updateUI() {
 	}
 }
 
-export { getWeather, getWeatherDetails, updateUI };
+export { getWeather, getWeatherDetails, postData, updateUI };

@@ -88,3 +88,5 @@ async function updateUI() {
 		console.log("Error", error);
 	}
 }
+
+export { getWeather, getWeatherDetails, updateUI };

@@ -12,30 +12,28 @@
 	<body>
 		<div id="app">
 			<div class="holder headline">Travel Planner</div>
-			<div class="title">Let's check the weather forecast for your dream vacation! 🌞 </div>
 			<div class="holder zip">
-				<div>
-					<label for="zip">Enter Zipcode here</label>
-					<input type="text" id="zip" placeholder="Enter zip code here" />
-				</div>
+				<div class="userInputs">
+					<label for="location">Enter location here</label>
+					<input type="text" id="location" placeholder="Enter city here" />
 
-				<button id="generate" type="submit">Generate</button>
+					<label for="date">Enter departure date here</label>
+					<input type="text" id="date" placeholder="Enter departure date here" />
+				</div>
+</div>
+				<button id="generate" type="submit" onclick="return Client.handleSubmit(event)"
+							onsubmit="return Client.handleSubmit(event)">Generate</button>
 			</div>
-			<div class="holder feel">
+			<!-- <div class="holder feel">
 				<label for="feelings">How are you feeling today?</label>
 				<textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
-			</div>
+			</div> -->
 			<div class="holder entry">
 				<div class="weather" id="entryHolder">
-					<p>Most recent entry 👇 👇 👇</p>
-					<div id="city"></div>
+					<p>Results 👇 👇 👇</p>
 					<div id="country"></div>
-					<div id="temperature"></div>
-					<div id="description"></div>
-					<div id="humidity"></div>
-					<div id="wind"></div>
-					<div id="date"></div>
-					<div id="content"></div>
+					<div id="latitude"></div>
+					<div id="longitude"></div>
 				</div>
 			</div>
 		</div>

@@ -12,9 +12,9 @@ function getLocation() {
 		.then(function (locationInfo) {
 			console.log("Checking location info", locationInfo);
 			// const city = locationInfo.geonames[0].data.cityname;
-			const country = locationInfo.geonames[0].data.country;
-			const latitude = locationInfo.geonames[0].data.latitude;
-			const longitude = locationInfo.geonames[0].data.ongitude;
+			const country = locationInfo.geonames[0].country;
+			const latitude = locationInfo.geonames[0].latitude;
+			const longitude = locationInfo.geonames[0].longitude;
 
 			// Post weather details to the server
 			postData("/addLocation", {

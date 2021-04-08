@@ -1,11 +1,6 @@
+var path = require("path");
 // Setup empty JS object to act as endpoint for all routes
-let projectData = {};
-
-const axios = require("axios");
-// Add environment variables, API for GeoNames
-const userName = "alinadev252";
-const city = "";
-const urlKey = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${userName}`;
+let projectData = [];
 
 // Require Express to run server and routes
 const express = require("express");
@@ -17,11 +12,10 @@ const app = express();
 const bodyParser = require("body-parser");
 
 /* Middleware*/
-//Here we are configuring express to use body-parser as middle-ware.
+// Configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Error-handling middleware
 app.use(function (err, req, res, next) {
 	console.error(err.stack);
 	res.status(500).send("Something broke!");
@@ -45,15 +39,20 @@ function listening() {
 	console.log(`running on localhost: ${port}`);
 }
 
-// GET request
+// Callback function to complete GET '/'
 app.get("/", function (req, res) {
-	res.sendFile("dist/index.html");
+	res.sendFile(path.resolve("src/client/views/index.html"));
 });
 
-//POST request
-app.post("/geoNamesApi", (req, res) => {
-	axios.post(urlKey).then((response) => {
-		res.send(response.data);
-		console.log(response.data);
-	});
+// Post Route for GeoNames
+app.post("/addLocation", function (req, res) {
+	newEntry = {
+		cityname: req.body.cityname,
+		country: req.body.country,
+		latitude: req.body.latitude,
+		longitude: req.body.longitude,
+	};
+	projectData.push(newEntry);
+	res.send(projectData);
+	console.log(projectData);
 });

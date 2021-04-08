@@ -1,96 +1,80 @@
-import axios from "axios";
-
-// Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
-console.log(newDate);
+// Global variables
+const apiKey = "alinadev252";
 
 // Event listener to add function to existing HTML DOM element
+document.getElementById("generate").addEventListener("click", getLocation);
 
-/* Function called by event listener */
-const handleSubmit = async (e) => {
-	e.preventDefault();
+// Function called by event listener
+function getLocation() {
+	// e.preventDefault();
+	const location = document.getElementById("location").value;
+	getLocationDetails(location)
+		.then(function (locationInfo) {
+			console.log("Checking location info", locationInfo);
+			// const city = locationInfo.geonames[0].data.cityname;
+			const country = locationInfo.geonames[0].data.country;
+			const latitude = locationInfo.geonames[0].data.latitude;
+			const longitude = locationInfo.geonames[0].data.ongitude;
 
-	const city = document.getElementById("location").value;
-	const departureDate = document.getElementById("date").value;
-	console.log("::: Form Submitted :::");
-	console.log(city);
-	console.log(departureDate);
+			// Post weather details to the server
+			postData("/addLocation", {
+				// city,
+				country,
+				latitude,
+				longitude,
+			});
 
-	return await axios
-		.post("/geoNamesAPI", { data: { country, latitude, longitude } })
-		.then((res) => updateUI(res.data))
-		.catch((error) => console.log("Error", error));
+			//  Call UpdateUI function after click and location details are gathered
+		})
+		.then(() => {
+			updateUI();
+		});
+}
+
+// /* Function to GET Web API Data from geonames API*/
+
+const getLocationDetails = async (city) => {
+	const baseURL = `http://api.geonames.org/searchJSON?placename=${city}&maxRows=1&username=${apiKey}`;
+	const response = await fetch(baseURL);
+	try {
+		const data = await response.json();
+		console.log(data);
+		return data;
+	} catch (error) {
+		console.log("error", error);
+	}
 };
 
-// function getWeather(e) {
-// 	e.preventDefault();
-// 	// const city = document.getElementById("location").value;
-// 	// const departureDate = document.getElementById("date").value;
-// 	getWeatherDetails(city, departureDate, urlKey)
-// 		.then(function (infoData) {
-// 			console.log("Checking info received from GeoNames", infoData);
+//  Function to POST data
+async function postData(url = "", data = {}) {
+	await fetch(url, {
+		method: "POST",
+		credentials: "same-origin",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(data),
+	});
 
-// 			const country = infoData.geonames[0].countryName;
-// 			const latitude = infoData.geonames[0].lat;
-// 			const longitude = infoData.geonames[0].lng;
+	try {
+		const newData = await response.json();
+		return newData;
+	} catch (error) {
+		console.log("error", error);
+	}
+}
 
-// 			// Post weather details to the server
-// 			postData("/add", {
-// 				country,
-// 				latitude,
-// 				longitude,
-// 			});
+// Function to update the UI
+async function updateUI() {
+	// GET function that takes the info from the server
+	const response = await fetch("/");
+	try {
+		const lastEntry = await response.json();
+		console.log(lastEntry);
+		document.getElementById("country").innerHTML = "Country: " + lastEntry[0].country;
+		document.getElementById("latitude").innerHTML = "Latitude: " + lastEntry[0].latitude;
+		document.getElementById("longitude").innerHTML = "Longitude: " + lastEntry[0].longitude;
+	} catch (error) {
+		console.log("Error", error);
+	}
+}
 
-// 			//  Call UpdateUI function after click and weather details are gathered
-// 		})
-// 		.then(() => {
-// 			updateUI();
-// 		});
-// }
-
-/* Function to GET Web API Data*/
-
-// const getWeatherDetails = async (city, departureDate, urlKey) => {
-// 	const response = await fetch(city + departureDate + urlKey);
-// 	try {
-// 		const data = await response.json();
-// 		console.log(data);
-// 		return data;
-// 	} catch (error) {
-// 		console.log("error", error);
-// 	}
-// };
-
-// /* Function to POST data */
-// async function postData(url = "", data = {}) {
-// 	await fetch(url, {
-// 		method: "POST",
-// 		credentials: "same-origin",
-// 		headers: { "Content-Type": "application/json" },
-// 		body: JSON.stringify(data),
-// 	});
-// }
-
-/* Function to GET Project Data */
-// async function updateUI() {
-// 	// GET function that takes the info from the server
-// 	const response = await fetch("/all");
-// 	try {
-// 		const lastEntry = await response.json();
-// 		console.log(lastEntry);
-// 		document.getElementById("country").innerHTML = "Country: " + lastEntry.geonames[0].countryName;
-// 		document.getElementById("latitude").innerHTML = "Latitude: " + lastEntry.geonames[0].lat;
-// 		document.getElementById("longitude").innerHTML = "Longitude: " + lastEntry.geonames[0].lng;
-// 	} catch (error) {
-// 		console.log("Error", error);
-// 	}
-// }
-
-const updateUI = async (response) => {
-	document.getElementById("country").innerHTML = "Country: " + response.geonames[0].countryName;
-	document.getElementById("latitude").innerHTML = "Latitude: " + response.geonames[0].lat;
-	document.getElementById("longitude").innerHTML = "Longitude: " + response.geonames[0].lng;
-};
-
-export { handleSubmit, updateUI };
+export { getLocation, getLocationDetails, updateUI };

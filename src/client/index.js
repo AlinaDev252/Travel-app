@@ -1,8 +1,13 @@
-import { getLocation, getLocationDetails } from "./js/app";
-import { updateUI } from "./js/app";
+import { handleEvent, calcDaysBetweenDates, updateUI } from "./js/app";
 
 import "./styles/style.scss";
-
+import "./styles/footer.scss";
 import "./assets/clouds.png";
+import "./assets/travel.png";
+import "./assets/github.png";
+import "./assets/twitter.png";
 
-export { getLocation, getLocationDetails, updateUI };
+const submitButton = document.getElementById("submitFormData");
+handleEvent(submitButton);
+
+export { handleEvent, calcDaysBetweenDates, updateUI };

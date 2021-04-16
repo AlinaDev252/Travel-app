@@ -102,9 +102,10 @@ const callApi = async (url) => {
 					};
 					await callApi(createPixabayFetchLink(formData.destination));
 				}
+				// Pixabay check
 				if ("hits" in data) {
 					pixabayData = {
-						imageUrl: data.hits[0].webformatURL,
+						imageUrl: data.hits[0].largeImageURL,
 					};
 				}
 			});

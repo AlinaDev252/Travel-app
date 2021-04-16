@@ -1,80 +1,107 @@
-// Global variables
-const apiKey = "alinadev252";
-
-// Event listener to add function to existing HTML DOM element
-document.getElementById("generate").addEventListener("click", getLocation);
-
-// Function called by event listener
-function getLocation() {
-	// e.preventDefault();
-	const location = document.getElementById("location").value;
-	getLocationDetails(location)
-		.then(function (locationInfo) {
-			console.log("Checking location info", locationInfo);
-			// const city = locationInfo.geonames[0].data.cityname;
-			const country = locationInfo.geonames[0].country;
-			const latitude = locationInfo.geonames[0].latitude;
-			const longitude = locationInfo.geonames[0].longitude;
-
-			// Post weather details to the server
-			postData("/addLocation", {
-				// city,
-				country,
-				latitude,
-				longitude,
-			});
-
-			//  Call UpdateUI function after click and location details are gathered
-		})
-		.then(() => {
-			updateUI();
-		});
-}
-
-// /* Function to GET Web API Data from geonames API*/
-
-const getLocationDetails = async (city) => {
-	const baseURL = `http://api.geonames.org/searchJSON?placename=${city}&maxRows=1&username=${apiKey}`;
-	const response = await fetch(baseURL);
-	try {
-		const data = await response.json();
-		console.log(data);
-		return data;
-	} catch (error) {
-		console.log("error", error);
-	}
-};
-
-//  Function to POST data
-async function postData(url = "", data = {}) {
-	await fetch(url, {
-		method: "POST",
-		credentials: "same-origin",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(data),
+const handleEvent = async (submitButton) => {
+	submitButton.addEventListener("click", (event) => {
+		event.preventDefault();
+		handleSubmitData();
 	});
 
-	try {
-		const newData = await response.json();
-		return newData;
-	} catch (error) {
-		console.log("error", error);
-	}
-}
+	const handleSubmitData = async () => {
+		// getting form data
+		const destination = document.getElementById("destination").value;
+		const startDate = document.getElementById("startDate").value;
+		const endDate = document.getElementById("endDate").value;
 
-// Function to update the UI
-async function updateUI() {
-	// GET function that takes the info from the server
-	const response = await fetch("/");
-	try {
-		const lastEntry = await response.json();
-		console.log(lastEntry);
-		document.getElementById("country").innerHTML = "Country: " + lastEntry[0].country;
-		document.getElementById("latitude").innerHTML = "Latitude: " + lastEntry[0].latitude;
-		document.getElementById("longitude").innerHTML = "Longitude: " + lastEntry[0].longitude;
-	} catch (error) {
-		console.log("Error", error);
-	}
-}
+		try {
+			const daysBetweenDates = await calcDaysBetweenDates(startDate, endDate);
 
-export { getLocation, getLocationDetails, updateUI };
+			console.log("POSTING DATA TO SERVER");
+			/* Function to POST data */
+			const postData = async (url = "", data = {}) => {
+				const response = await fetch(url, {
+					method: "POST",
+					credentials: "same-origin",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					// Body data type must match "Content-Type" header
+					body: JSON.stringify(data),
+				});
+
+				try {
+					const newData = await response.json();
+					return newData;
+				} catch (error) {
+					console.log("Error: ", error);
+				}
+			};
+			await postData("/sendFormData", { destination, startDate, endDate, daysBetweenDates });
+			getData("/getData");
+		} catch (error) {
+			alert(error);
+		}
+	};
+};
+
+// get the days between todays date and the travel date
+const calcDaysBetweenDates = (startDate, endDate) => {
+	const oneDay = 24 * 60 * 60 * 1000;
+	const firstDate = new Date(startDate);
+	const secondDate = new Date(endDate);
+
+	const daysBetweenDates = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+
+	// if secondDate lies in the past throw error
+	if (firstDate > secondDate) {
+		throw new Error("Choose a future date.");
+	}
+
+	return daysBetweenDates;
+};
+
+let uiData = {};
+const errorMessage = document.getElementById("error_message");
+
+/*Function to GET data*/
+const getData = async (url = "") => {
+	const response = await fetch(url, {
+		method: "GET",
+	})
+		.then((response) => {
+			return response.json();
+		})
+		.then((data) => {
+			uiData.imageURL = data[1].imageUrl;
+			uiData.tripLength = data[0].tripLength;
+			uiData.avgTemp = data[0].averageTemp;
+			uiData.maxTemp = data[0].maxTemp;
+			uiData.minTemp = data[0].minTemp;
+			uiData.iconCode = data[0].iconCode;
+			updateUI(uiData.imageURL, uiData.avgTemp, uiData.maxTemp, uiData.minTemp, uiData.iconCode, uiData.tripLength);
+		})
+		.catch((err) => {
+			console.log(err);
+			errorMessage.style.display = "block";
+		});
+};
+
+// updating UI
+const updateUI = (imageURL, avgTemp, maxTemp, minTemp, iconCode, tripLength) => {
+	const resultImage = document.getElementById("result_image");
+	const resultIcon = document.getElementById("result_icon");
+	const avgTempPlaceholder = document.getElementById("avg_temp");
+	const maxTempPlaceholder = document.getElementById("max_temp");
+	const minTempPlaceholder = document.getElementById("min_temp");
+	const tripDuration = document.getElementById("trip_duration");
+
+	resultImage.src = imageURL;
+	resultIcon.src = `/weather_icons/${iconCode}.png`;
+	avgTempPlaceholder.textContent = avgTemp + "°C";
+	maxTempPlaceholder.textContent = maxTemp + "°C";
+	minTempPlaceholder.textContent = minTemp + "°C";
+	tripDuration.textContent = tripLength + " Days";
+};
+
+module.exports = {
+	handleEvent,
+	calcDaysBetweenDates,
+	updateUI,
+};

@@ -3,41 +3,55 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Travel app</title>
-		<!-- <link
-			href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="./styles/style.scss" /> -->
 	</head>
 	<body>
-		<div id="app">
-			<div class="holder headline">Travel Planner</div>
-			<div class="title">Let's check the weather forecast for your dream vacation! 🌞 🧡</div>
-			<div class="holder zip">
-				<div class="userInputs">
-					<label for="location">Enter location here</label>
-					<input type="text" id="location" placeholder="Enter location here" />
-
-					<label for="date">Enter departure date here</label>
-					<input type="text" id="date" placeholder="Enter departure date here" />
+		<header class="top_cst">
+			<div class="travel_planner">
+				<div class="travel_planner_text">
+					<h1>Travel app</h1>
+					<p>Let's check for the weather on your dream destination 🌞</p>
 				</div>
-</div>
-				<button id="generate" type="submit">Generate</button>
-			</div>
-			<!-- <div class="holder feel">
-				<label for="feelings">How are you feeling today?</label>
-				<textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
-			</div> -->
-			<div class="holder entry">
-				<div class="weather" id="entryHolder">
-					<p>Results 👇 👇 👇</p>
-					<div id="country"></div>
-					<div id="latitude"></div>
-					<div id="longitude"></div>
+				<div class="travel_planner_bottom">
+					<form>
+						<label for="destination">Destination:</label>
+						<input type="text" id="destination" name="destination" placeholder="Destination" required />
+						<label for="startDate">Start date:</label>
+						<input type="date" id="startDate" name="startDate" placeholder="dd.mm.yyyy" required />
+						<label for="date">End date:</label>
+						<input type="date" id="endDate" name="endDate" placeholder="dd.mm.yyyy" required />
+						<input type="submit" id="submitFormData" value="Submit" />
+					</form>
+					<div class="result_section">
+						<div class="result_image">
+							<img id="result_image" src="" />
+							<a href="https://pixabay.com" target="_blank" rel="external nofollow" class="image_copyright"
+								>Pictures by Pixabay</a
+							>
+						</div>
+						<div class="result_weather">
+							<div class="result_weather_icon">
+								<img id="result_icon" src="assets/travel.png" />
+							</div>
+							<div class="result_weather_temp">
+								<p id="error_message">
+									Oh no, something went wrong, please try again and check your entered Location and the Dates.
+								</p>
+								<p>Weather Forecast:</p>
+								<div>Avg. Temp:</div>
+								<div id="avg_temp"></div>
+								<div>Max. Temp:</div>
+								<div id="max_temp"></div>
+								<div>Min. Temp:</div>
+								<div id="min_temp"></div>
+								<br />
+								<p>Trip Duration:</p>
+								<span id="trip_duration">Days</span>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<!-- <script src="app.js" type="text/javascript"></script> -->
+		</header>
 		<!-- <script>
 			if ("serviceWorker" in navigator) {
 				window.addEventListener("load", () => {
@@ -53,5 +67,14 @@
 			}
 
 		</script> -->
+		<footer>
+			<div class="footer">
+				<p class="footer-text">Copyright 2021 © Alina Goiea</p>
+				<div class="social-media">
+					<a class="social" href="https://github.com/AlinaDev252"><img src="/assets/github.png" alt="github" /></a>
+					<a class="social" href="https://twitter.com/AGoiea"><img src="../assets/twitter.png" alt="twitter" /></a>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>

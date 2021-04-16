@@ -1,8 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mali:wght@500&display=swap");
+
+$link_color: #f2db66;
+$font_custom_1: "Inconsolata", sans-serif;
+$font_custom_2: "Mali", sans-serif;
+$custom_color_1: blue;
+$custom_color_2: #0d0d0d;
+$custom_color_3: lightsteelblue;
+
 footer {
-	background-color: #90323d;
+	background-color: $custom_color_3;
 	color: white;
 	text-align: left;
-	margin-top: 40px;
 	font-family: "Mali", cursive;
 	justify-content: flex-end;
 }
@@ -12,9 +21,10 @@ footer {
 }
 
 .footer-text {
-	padding: 20px;
+	padding: 10px;
 	flex-grow: 1;
 	align-self: center;
+	color: whitesmoke;
 }
 
 .social-media {
@@ -35,4 +45,3 @@ footer {
 	padding: 5px;
 	margin-top: 10px;
 }
-

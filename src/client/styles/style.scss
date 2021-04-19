@@ -4,7 +4,7 @@
 $link_color: #3a0ca3;
 $font_custom_1: "Inconsolata", sans-serif;
 $font_custom_2: "Mali", sans-serif;
-$custom_color_1: #219ebc;
+$custom_color_1: #457b9d;
 $custom_color_2: #0d0d0d;
 $custom_color_3: lightsteelblue;
 
@@ -62,20 +62,23 @@ a {
 
 		.travel_planner_text {
 			margin-bottom: 30px;
-      margin-top:70px;
-			text-shadow: 1px 1px 5px #000;
+			margin-top: 70px;
+			text-shadow: 1px 1px 5px $custom_color_1;
 
 			h1 {
 				font-size: 3em;
 			}
 			p {
 				font-size: 1.2em;
+				margin: 10px;
 			}
 		}
 		.travel_planner_bottom {
 			display: flex;
+			text-align: left;
 			background-color: rgba(#fff, 0.9);
 			margin: 50px;
+			padding: 25px;
 
 			form {
 				padding: 0 50px;

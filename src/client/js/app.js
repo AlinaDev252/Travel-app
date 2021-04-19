@@ -51,9 +51,8 @@ const calcDaysBetweenDates = (startDate, endDate) => {
 
 	// if secondDate lies in the past throw error
 	if (firstDate > secondDate) {
-		throw new Error("Choose a future date.");
+		throw new Error("Choose a future date!");
 	}
-
 	return daysBetweenDates;
 };
 
@@ -84,7 +83,7 @@ const getData = async (url = "") => {
 };
 
 // updating UI
-const updateUI = (imageURL, avgTemp, maxTemp, minTemp, iconCode, tripLength) => {
+const updateUI = (imageURL, avgTemp, maxTemp, minTemp, tripLength) => {
 	const resultImage = document.getElementById("result_image");
 	const avgTempPlaceholder = document.getElementById("avg_temp");
 	const maxTempPlaceholder = document.getElementById("max_temp");

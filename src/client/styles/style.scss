@@ -1,26 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mali:wght@500&display=swap");
 
-// @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Oswald:wght@400;600&display=swap");
-
-$link_color: #f2db66;
+$link_color: #3a0ca3;
 $font_custom_1: "Inconsolata", sans-serif;
 $font_custom_2: "Mali", sans-serif;
-$custom_color_1: blue;
+$custom_color_1: #219ebc;
 $custom_color_2: #0d0d0d;
-$custom_color_3:lightsteelblue;;
+$custom_color_3: lightsteelblue;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
 html {
 	scroll-behavior: smooth;
 }
-
 
 body {
 	background-color: #fff;
 	font-family: $font_custom_2;
 	font-size: 16px;
 	line-height: 1.3em;
-  max-width: 100%;
 }
 
 h1 {
@@ -41,7 +43,7 @@ a {
 }
 
 .top_cst {
-	background-image: url("../assets/clouds.png") ;
+	background-image: url("../assets/clouds.png");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -51,7 +53,7 @@ a {
 	position: relative;
 
 	.travel_planner {
-  text-align: center;
+		text-align: center;
 
 		transform: translate(-50%, -50%);
 		position: absolute;
@@ -60,6 +62,7 @@ a {
 
 		.travel_planner_text {
 			margin-bottom: 30px;
+      margin-top:70px;
 			text-shadow: 1px 1px 5px #000;
 
 			h1 {
@@ -72,6 +75,7 @@ a {
 		.travel_planner_bottom {
 			display: flex;
 			background-color: rgba(#fff, 0.9);
+			margin: 50px;
 
 			form {
 				padding: 0 50px;

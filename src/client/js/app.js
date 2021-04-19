@@ -74,8 +74,8 @@ const getData = async (url = "") => {
 			uiData.avgTemp = data[0].averageTemp;
 			uiData.maxTemp = data[0].maxTemp;
 			uiData.minTemp = data[0].minTemp;
-			uiData.iconCode = data[0].iconCode;
-			updateUI(uiData.imageURL, uiData.avgTemp, uiData.maxTemp, uiData.minTemp, uiData.iconCode, uiData.tripLength);
+			// uiData.iconCode = data[0].iconCode;
+			updateUI(uiData.imageURL, uiData.avgTemp, uiData.maxTemp, uiData.minTemp, uiData.tripLength);
 		})
 		.catch((err) => {
 			console.log(err);
@@ -86,14 +86,13 @@ const getData = async (url = "") => {
 // updating UI
 const updateUI = (imageURL, avgTemp, maxTemp, minTemp, iconCode, tripLength) => {
 	const resultImage = document.getElementById("result_image");
-	const resultIcon = document.getElementById("result_icon");
 	const avgTempPlaceholder = document.getElementById("avg_temp");
 	const maxTempPlaceholder = document.getElementById("max_temp");
 	const minTempPlaceholder = document.getElementById("min_temp");
 	const tripDuration = document.getElementById("trip_duration");
 
 	resultImage.src = imageURL;
-	resultIcon.src = `/weather_icons/${iconCode}.png`;
+	// resultIcon.src = `/weather_icons/${iconCode}.png`;
 	avgTempPlaceholder.textContent = avgTemp + "°C";
 	maxTempPlaceholder.textContent = maxTemp + "°C";
 	minTempPlaceholder.textContent = minTemp + "°C";

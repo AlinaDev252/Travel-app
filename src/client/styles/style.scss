@@ -1,9 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Mali:wght@500&display=swap");
+@import url("https://use.typekit.net/jje0kvy.css");
 
-$link_color: #3a0ca3;
-$font_custom_1: "Inconsolata", sans-serif;
-$font_custom_2: "Mali", sans-serif;
+$font_custom: "proxima-nova", sans-serif;
 $custom_color_1: #457b9d;
 $custom_color_2: #0d0d0d;
 $custom_color_3: lightsteelblue;
@@ -20,25 +17,25 @@ html {
 
 body {
 	background-color: #fff;
-	font-family: $font_custom_2;
+	font-family: $font_custom;
 	font-size: 16px;
 	line-height: 1.3em;
 }
 
 h1 {
-	font-family: $font_custom_1;
+	font-family: $font_custom;
 	text-transform: uppercase;
 	line-height: 1.3em;
+	margin-top: 15px;
 }
 
 h2 {
-	font-family: $font_custom_1;
+	font-family: $font_custom;
 	text-transform: uppercase;
 	line-height: 1.3em;
 }
 
 a {
-	color: $link_color;
 	text-decoration: none;
 }
 
@@ -63,7 +60,10 @@ a {
 		.travel_planner_text {
 			margin-bottom: 30px;
 			margin-top: 70px;
-			text-shadow: 1px 1px 5px $custom_color_1;
+			background-color: rgba(#fff, 0.5);
+			color: $custom_color_1;
+			margin: 50px;
+			padding: 5px 5px 10px 5px;
 
 			h1 {
 				font-size: 3em;
@@ -76,7 +76,7 @@ a {
 		.travel_planner_bottom {
 			display: flex;
 			text-align: left;
-			background-color: rgba(#fff, 0.9);
+			background-color: rgba(#fff, 0.5);
 			margin: 50px;
 			padding: 25px;
 
@@ -88,7 +88,7 @@ a {
 				label {
 					margin-bottom: 5px;
 					display: block;
-					font-family: $font_custom_2;
+					font-family: $font_custom;
 					color: #000;
 				}
 
@@ -109,7 +109,7 @@ a {
 				}
 				#submitFormData {
 					background-color: $custom_color_3;
-					font-family: $font_custom_1;
+					font-family: $font_custom;
 					text-transform: uppercase;
 					letter-spacing: 0.5px;
 					padding: 10px 15px;
@@ -141,7 +141,7 @@ a {
 						right: 5px;
 						font-size: 0.8em;
 						text-shadow: 0 0 20px #000;
-						font-family: $font_custom_1;
+						font-family: $font_custom;
 						text-transform: uppercase;
 						letter-spacing: 0.5px;
 						color: #fff;
@@ -173,28 +173,30 @@ a {
 					}
 					.result_weather_temp {
 						p {
-							font-family: $font_custom_1;
+							font-family: $font_custom;
 							text-transform: uppercase;
 							margin-bottom: 15px;
-							font-size: 1.5em;
+							font-size: 1em;
+							font-weight: bold;
+							letter-spacing: 0.1em;
 						}
 
 						#error_message {
 							display: none;
-							color: red;
+							color: crimson;
 						}
 
 						#avg_temp,
 						#max_temp,
 						#min_temp {
-							font-family: $font_custom_1;
+							font-family: $font_custom;
 							text-transform: uppercase;
 						}
 					}
 				}
 				button.save {
 					background-color: #fff;
-					font-family: $font_custom_1;
+					font-family: $font_custom;
 					text-transform: uppercase;
 					letter-spacing: 0.5px;
 					padding: 10px 20px;
@@ -214,7 +216,7 @@ a {
 		}
 	}
 	#scroll_down {
-		font-family: $font_custom_1;
+		font-family: $font_custom;
 		text-transform: uppercase;
 		position: absolute;
 		bottom: 30px;
@@ -229,7 +231,6 @@ a {
 			content: "";
 			height: 30px;
 			width: 30px;
-			// background-image: url(../);
 			background-size: 30px auto;
 			background-repeat: no-repeat;
 			background-position: center;

@@ -1,10 +1,9 @@
 # FEND Capstone Project: Travel App
 
-This project is a part is the final project of Udacity's **Front End Nanodegree Program** and it requires to build out a travel app that, at a minimum, obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs.
+This project is a part of the final project of Udacity's **Front End Nanodegree Program** and it requires to build out a travel app that, at a minimum, obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs.
 
-## This project requires to build a web tool that allows users to run Natural Language Processing (NLP) on articles or blogs found on other websites.
+## This project requires was built
 
-**Basically, it will provide help in classifying the information available in the article, like whether the content is subjective (opinion) or objective (fact-based) and whether it is positive, neutral, or negative in tone**.
 
 _NLP is a subset of AI that provides computers ability to process or interact with natural human speech. In NLP, machine learning and deep learning are used on massive amounts of data to obtain the rules and understanding of nuance in human speech_.
 

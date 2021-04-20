@@ -8,6 +8,7 @@ This project is a part of the final project of Udacity's **Front End Nanodegree 
 - Webpack
 - Node.JS
 - Express.JS
+- Jest for testing purposes
 - [Geonames API](https://www.geonames.org/)
 - [Pixabay API](https://pixabay.com/)
 - [Weatherbit API](https://www.weatherbit.io/)
